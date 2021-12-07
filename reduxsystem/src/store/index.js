@@ -3,7 +3,10 @@ import reducers from '../reducers'
 import thunk from 'redux-thunk'
 import {createLogger} from 'redux-logger'
 import { helloSaga } from './sagas'
-const middleware=[ thunk ];
+import createSagaMiddleware from 'redux-saga'
+
+const middleware=[ thunk, createSagaMiddleware(helloSaga)];
+
 if(process.env.NODE_ENV !== 'production'){
     middleware.push(createLogger())
 }

@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 import AsyncList from "../components/AsyncList";
 import {getHttpAction,getInitTodoItemAction} from '../actions'
 import React, { Component, Fragment } from 'react';
-// import PropTypes from 'prop-types'
 
 const mapStateToProps=state=>({
     asyncList:state.asyncList
@@ -20,7 +19,6 @@ class Showasynclist extends Component {
         super(props)
     }
     componentDidMount() {
-        console.log(this.props)
         this.props.getHttpAction(1,getInitTodoItemAction)
     }
     render() {

@@ -23,7 +23,6 @@ export const getInitTodoItemAction= listArray => ({
 //    await dispatch(fetchPosts(id))
 // )
 export const getHttpAction = (id,func) => async (dispatch) => {
-    console.log(id,func)
     let res = await axios.get('http://jsonplaceholder.typicode.com/posts/'+id+'/comments')
     const action = func(res.data)
     dispatch(action)

@@ -3,6 +3,7 @@ import AddTodo from './containers/AddTodo'
 import VisibleTodoList from './containers/VisableTodo'
 import Footer from './components/Footer'
 import ShowAsynclist from './containers/ShowAsynclist'
+
 function App() {
   return (
     <div className="App">
@@ -11,8 +12,12 @@ function App() {
         <VisibleTodoList />
         <Footer/>
         <div className="shopCart">
-            redux异步处理拿到的数据：
+            redux-thunk　异步处理拿到的数据：
             <ShowAsynclist />
+        </div>
+        <div className="shopCart">
+            redux-saga　异步处理拿到的数据：
+            {/* <ShowAsynclist /> */}
         </div>
       </header>
       
