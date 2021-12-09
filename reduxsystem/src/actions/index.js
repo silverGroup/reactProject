@@ -19,16 +19,19 @@ export const getInitTodoItemAction= listArray => ({
     type: types.INIT_TODO_ITEM,
     listArray
 })
-// export const getInitlist=async (id) => (
-//    await dispatch(fetchPosts(id))
-// )
+
 export const getHttpAction = (id,func) => async (dispatch) => {
     let res = await axios.get('http://jsonplaceholder.typicode.com/posts/'+id+'/comments')
     const action = func(res.data)
     dispatch(action)
 }
-
-
+/**
+ * saga的action
+ */
+export const getSagaListAsync = payload => ({
+  type: types.SAGA_LIST_ASYNC,
+  payload
+})
 
 export const VisibilityFilters = {
   SHOW_ALL: 'SHOW_ALL',

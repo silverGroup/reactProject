@@ -1,5 +1,5 @@
 /**
- * redux 异步获取数据
+ * redux-thunk 异步获取数据
  */
 
 import { connect } from "react-redux";
@@ -15,9 +15,6 @@ const mapDispatchToProps=dispatch=>({
 })
 
 class Showasynclist extends Component {
-    constructor(props){
-        super(props)
-    }
     componentDidMount() {
         this.props.getHttpAction(1,getInitTodoItemAction)
     }

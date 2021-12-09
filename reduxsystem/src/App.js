@@ -3,7 +3,7 @@ import AddTodo from './containers/AddTodo'
 import VisibleTodoList from './containers/VisableTodo'
 import Footer from './components/Footer'
 import ShowAsynclist from './containers/ShowAsynclist'
-
+import ShowSagalist from './containers/ShowSagalist'
 function App() {
   return (
     <div className="App">
@@ -17,7 +17,7 @@ function App() {
         </div>
         <div className="shopCart">
             redux-saga　异步处理拿到的数据：
-            {/* <ShowAsynclist /> */}
+            <ShowSagalist></ShowSagalist>
         </div>
       </header>
       
