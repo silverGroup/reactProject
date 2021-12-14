@@ -66,6 +66,40 @@ class People {
         console.log(`${this.name}`)
     }
 }
+/**
+ * 防抖函数
+ * 第一次触发不执行，而是给出一个期限值比如200ms
+ * 如果200ms内不触发，执行，触发了，清除当前计时，重新开始计时
+ * 效果：短时间内触发同一事件，只执行一次
+ * 应用：页面resize事件，常见于需要做页面适配的时候
+ */
+function debounce(func,delay){
+    let timer=null
+    return function(){
+        if(timer){
+            clearTimeout(timer)
+        }
+        timer=setTimeout(func,delay)
+    }
+}
+/**
+ * 节流函数
+ * 效果：一段时间内只做一件这个事。执行一次。
+ * 应用：搜索框input事件，例如要支持输入实时搜索可以使用节流方案
+ */
+function throttle(func,wait,falg){
+    // 一段时间内只执行一次
+    let timeout= null
+    return function(){
+        if(flag) return
+        if(!timeout){
+            timeout=setTimeout(()=>{
+                timeout=null
+                func()
+            },wait)
+        }
+    }
+}
 
 
 
