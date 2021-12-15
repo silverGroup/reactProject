@@ -8,7 +8,7 @@ import config from './config'
 import AppRouters from './router/router'
 import { ConfigProvider } from 'antd';
 import i18n from './language';
-import 'antd/dist/antd.less';
+import 'antd/dist/antd.css';
 
 ReactDOM.render(
   <React.StrictMode>
