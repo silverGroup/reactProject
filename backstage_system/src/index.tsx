@@ -1,26 +1,23 @@
-import React from 'react';
+import React ,{Suspense} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import { Spin } from 'antd';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router} from 'react-router-dom';
 import config from './config'
-import {layoutRouteList} from './router'
-
+import AppRouters from './router/router'
+import { ConfigProvider } from 'antd';
+import i18n from './language';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router basename={config.BASENAME}>
-        <Switch>
-          {layoutRouteList.map((route: IRoute) => (
-            <Route
-              key={config.BASENAME + route.path}
-              path={route.path}
-              component={route.component}
-            ></Route>
-          ))}
-        </Switch>
-      </Router>
+    <ConfigProvider direction="rtl" csp={{ nonce: 'YourNonceCode' }}>
+        <Suspense fallback={<Spin size="large" className="layout__loading" />}>
+            <Router  basename={config.BASENAME}>
+                <AppRouters/>
+            </Router>
+        </Suspense>
+    </ConfigProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

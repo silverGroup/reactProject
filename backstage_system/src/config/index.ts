@@ -3,7 +3,7 @@ export interface Config{
     SUCCESS_CODE:number
 }
 const AdminConfig:Config={
-  BASENAME: '/system',
+  BASENAME: '/app',
   SUCCESS_CODE: 200
 
 }
