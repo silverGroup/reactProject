@@ -1,38 +1,42 @@
-import { Button,Card,Form, Input, } from 'antd';
+import React from 'react';
 import './index.less'
+import { Button,Card,Form, Input, } from 'antd';
+import { useTranslation} from 'react-i18next'
+import LangLayout from '../../../component/common/lang'
 const Login=()=>{
+    const [t]=useTranslation()
+    const [form] = Form.useForm();
+    const resetForm = () => {
+        form.resetFields();
+    };
+    const handelLogin= (values: any) => {
+        console.log(values);
+    }
     return (
         <div className="login-page">
-            <table></table>
-            <Card className="box-card">
-            <div className="card-header-box">
-                <div className="card-header">
-                    <span>系统登录</span>
-                </div>
-            </div>
-            <Form  name="basic"
-                labelCol={{ span: 8 }}
-                wrapperCol={{ span: 16 }}
-                initialValues={{ remember: true }}
-                // onFinish={onFinish}
-                // onFinishFailed={onFinishFailed}
-                autoComplete="off">
-                <Form.Item  >
-                    <Input />
-                </Form.Item>
-                <Form.Item >
-                    <Input />
-                </Form.Item>
-            </Form>
-            <div className="test-box">
-                <h3></h3>
-                <p></p>
-                <p></p>
-            </div>
-            <div className="flex">
-                {/* <Button type="primary" onClick={handelLogin} className="btn"></Button> */}
-                {/* <Button type="default" onClick={resetForm} className="btn"></Button> */}
-            </div>
+            <Card className="box-card" bordered={false} headStyle={{color:'#FFF',borderBottom:'none'}} title={t('login.page')}
+            extra={<LangLayout></LangLayout>}>
+                <Form  name="basic"
+                    form={form}
+                    initialValues={{ remember: true }}
+                    onFinish={handelLogin}
+                    // onFinishFailed={onFinishFailed}
+                    autoComplete="off">
+                    <Form.Item  name="username" rules={[{ required: true }]} >
+                        <Input 
+                            placeholder={t('login.usernameholder')}
+                        />
+                    </Form.Item>
+                    <Form.Item  name="password" rules={[{ required: true }]}>
+                        <Input.Password  placeholder={t('login.passwordholder')}/>
+                    </Form.Item>
+                    <Form.Item >
+                        <div className="flex">
+                            <Button  type="default" onClick={resetForm} className="btn">{t('common.reset')}</Button>
+                            <Button  type="primary"  htmlType="submit" className="btn">{t('common.login')}</Button>
+                        </div>
+                    </Form.Item>
+                </Form>
             </Card>
         </div>
     )
