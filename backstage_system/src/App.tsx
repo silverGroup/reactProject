@@ -1,8 +1,12 @@
-import { useStore } from 'react-redux';
+import { useSelector, useStore } from 'react-redux';
 import AppRouters from './router/router';
-
+interface RootStateType{
+    userinfo?:{
+        ticket?:string
+    }
+}
 function App() {
-  const isLoggedIn=useStore().getState().userinfo.ticket;
+  const isLoggedIn=useSelector((state: RootStateType) =>{ return state.userinfo?state.userinfo.ticket:''})
   return (
     <AppRouters isLogin={isLoggedIn}/>
   );

@@ -13,48 +13,52 @@ const Login=(props: any)=>{
     const resetForm = () => {
         form.resetFields();
     };
-    const submit=()=> {
+    let toggleUserInfo: ((arg0: { token?: string | undefined; ticket?: string | undefined; }) => void) | null=()=>{}
+    const submit=(callback: any)=> {
+        console.log('submit',callback)
+        toggleUserInfo=callback
         form.submit()
     }
-    const handelLogin= async (values: any) => {
-        let {username,password}=values
-        let data:object={
-            username,
-            password
-        }
-        let result=await LoginPost(data)
-        if(result.data?.token&&result.data?.ticket){
-            // props.toggleUserInfo(result.data)
-            navigate('/dashborad/home', {state:{username:"admin"},replace:true});
-        }else{
-           message.error(result.message) 
+    const handelLogin=async (name: string, { values, forms }: any) => {
+        console.log('login',name,values,forms)
+        if (name === 'userForm') {
+            let result=await LoginPost(values)
+            if(result.data?.token&&result.data?.ticket){
+                await (toggleUserInfo&&toggleUserInfo(result.data))
+                navigate('/dashborad/home', {state:{username:"admin"},replace:true});
+            }else{
+                message.error(result.message) 
+            }
         }
     }
     return (
         <div className="login-page">
             <Card className="box-card" bordered={false} headStyle={{color:'#FFF',borderBottom:'none'}} title={t('login.page')}
             extra={<LangLayout></LangLayout>}>
-                <Form  name="basic"
-                    form={form}
-                    initialValues={{ remember: true }}
-                    // onFinish={handelLogin}
-                    autoComplete="off">
-                    <Form.Item  name="username" rules={[{ required: true }]} >
-                        <Input 
-                            placeholder={t('login.usernameholder')}
-                        />
-                    </Form.Item>
-                    <Form.Item  name="password" rules={[{ required: true }]}>
-                        <Input.Password  placeholder={t('login.passwordholder')}/>
-                    </Form.Item>
-                    <Form.Item >
-                        <div className="flex">
-                            <Button  type="default" onClick={resetForm} className="btn">{t('common.reset')}</Button>
-                            <LoginBtnLayout login={true} submit={handelLogin}></LoginBtnLayout>
-                            {/* <Button  type="primary"  htmlType="submit" className="btn">{t('common.login')}</Button> */}
-                        </div>
-                    </Form.Item>
-                </Form>
+                <Form.Provider onFormFinish={handelLogin}>
+                    <Form 
+                        form={form}
+                        initialValues={{ remember: true }}
+                        // onFinish={handelLogin}
+                        name="userForm"
+                        autoComplete="off">
+                        <Form.Item  name="username" rules={[{ required: true }]} >
+                            <Input 
+                                placeholder={t('login.usernameholder')}
+                            />
+                        </Form.Item>
+                        <Form.Item  name="password" rules={[{ required: true }]}>
+                            <Input.Password  placeholder={t('login.passwordholder')}/>
+                        </Form.Item>
+                        <Form.Item >
+                            <div className="flex">
+                                <Button  type="default" onClick={resetForm} className="btn">{t('common.reset')}</Button>
+                                <LoginBtnLayout login={true} submit={submit}></LoginBtnLayout>
+                                {/* <Button  type="primary"  htmlType="submit" className="btn">{t('common.login')}</Button> */}
+                            </div>
+                        </Form.Item>
+                    </Form>
+                </Form.Provider>
             </Card>
         </div>
     )

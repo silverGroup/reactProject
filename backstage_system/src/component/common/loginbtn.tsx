@@ -13,9 +13,7 @@ const LoginBtnLayout=(props:any) =>{
         navigate('/system/login',{replace:true})
     }
     const loginFun=()=>{
-        return ()=>{
-            props.submit(props.toggleUserInfo)
-        }
+        props.submit(props.toggleUserInfo)
     }
     return(
         <Fragment>
