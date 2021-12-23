@@ -1,19 +1,22 @@
-interface UrlDist {
+interface UrlDistType {
     [key:string]:{
         [key:string]:string
     }
 }
 
-const UrlDist:UrlDist ={
+const UrlDist:UrlDistType ={
     Login:{
-        dologin:'/admin/get'
+        dologin:'/mock/usercenter/login'
+    },
+    Base:{
+        menu:'/mock/usercenter/menu'
     }
 }
 
 const getUrl = (biz:string,UrlName:string):string=>{
     try {
         const bizKeys=Object.keys(UrlDist);
-        if(bizKeys.indexOf(biz)<0){
+        if(bizKeys.indexOf(biz.toString())<0){
             throw new Error('biz not in UrlDist')
         }
         let hostname=UrlDist[biz][UrlName]

@@ -1,2 +1,5 @@
 import LoginLayout from './logo/LoginLayout'
-export {LoginLayout}
+import MenuLayout from './menu/MenuLayout'
+export {LoginLayout,MenuLayout}
+
+

@@ -13,7 +13,6 @@ import { Spin } from 'antd';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router} from 'react-router-dom';
 import config from './config'
-import AppRouters from './router/router'
 import { ConfigProvider } from 'antd';
 import 'antd/dist/antd.less';
 import './index.less';
@@ -21,13 +20,15 @@ import enUS from 'antd/lib/locale/en_US';
 import zhCN from 'antd/lib/locale/zh_CN';
 import store from './store'
 import { Provider } from 'react-redux'
+import App from './App';
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
             <Suspense fallback={<Spin size="large" className="layout__loading" />}>
                 <Router  basename={config.BASENAME}>
                     <ConfigProvider locale={store.getState().lang==='zh'?zhCN:enUS} csp={{ nonce: 'YourNonceCode' }} >
-                        <AppRouters/>
+                        <App/>
                     </ConfigProvider>
                 </Router>
             </Suspense>

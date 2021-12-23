@@ -2,7 +2,7 @@ export default {
  data: {
     id: 1,
     username: 'admin',
-    password: '121212',
+    password: 'admin',
     chineseName: '管理员',
     idcardNo: '000000000000000000',
     policeCode: '000000',

@@ -1,60 +1,46 @@
 export default {
   data: {
     list: [
-
-      {
-        id: 10063,
-        resName: '概览',
-        resKey: 'desk$/index',
-        resIcon: 'pgmb',
-      },
-      // {
-      //   id: 10064,
-      //   resName: 'socket接收',
-      //   resKey: 'socketReceive',
-      //   resIcon: 'pgmb',
-      // },
       {
         id: 600110233,
-        resName: '图表',
+        resName: 'chart',
         resKey: 'echarts',
-        resIcon: 'statistics',
+        resIcon: 'PieChartOutlined',
       },
       {
         id: 100631,
-        resName: '编辑器',
+        resName: 'editor',
         resKey: 'editor',
-        resIcon: 'duty',
+        resIcon: 'FormOutlined',
       },
-
       {
         id: 10062,
-        resName: '设置中心',
+        resName: 'setting',
+        resIcon: 'SettingOutlined',
+        resKey: 'set$',
         children: [
           {
             id: 10108,
-            resName: '用户管理',
+            resName: 'usermanagement',
             resKey: 'set$/userManage',
-            resIcon: 'userManage',
+            resIcon: 'TeamOutlined',
           },
           {
             id: 10109,
-            resName: '角色管理',
+            resName: 'rolemanagement',
             resKey: 'set$/roleManage',
-            resIcon: 'roleManage',
+            resIcon: 'UsergroupDeleteOutlined',
           },
           {
             id: 10110,
-            resName: '权限管理',
+            resName: 'authoritymanagement',
             resKey: 'set$/moduleManage',
             resIcon: 'moduleManage',
           },
-        ],
-        resKey: 'set$',
-        resIcon: 'xtxg',
+        ]
       },
     ],
   },
   msg: '操作成功',
-  status: 1,
+  status: 200,
 }

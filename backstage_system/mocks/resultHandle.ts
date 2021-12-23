@@ -15,11 +15,12 @@ export const ResultHandler:Middleware = () => async (ctx:Context,next:Next)=>{
     const r:ResultInfo={code:0}
     try {
         const data:any =await next();
-        r.code=200;
-        r.msg='Success'
-        r.data= data||[];
+        r.code=data.status||'200'
+        r.msg=data.msg||'Success'
+        r.data=data.data||{};
     } catch (error:any) {
         r.code=error.statusCode
+        r.msg="Error"
         switch(error.statusCode){
             case 102:
                 r.msg = '用户不存在'

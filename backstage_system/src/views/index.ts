@@ -1,2 +1,5 @@
 import Login from './system/login/login'
-export {Login}
+import Home from './dashborad/home'
+import NotFound from './dashborad/notfound'
+
+export {Login,Home,NotFound}

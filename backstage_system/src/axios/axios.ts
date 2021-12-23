@@ -2,13 +2,12 @@
  * axios请求封装
  */
 
-import Vue from "vue";
 import getUrl from './api'
 import instance from './intercept'
 import {AxiosRequest,CustomResponse } from './type'
 
 class AxiosAbstract{
-    protected baseURL:string | undefined= process.env.Vue_APP_BaseUrl
+    protected baseURL:string | undefined= process.env.APP_BASEURL
     protected headers:object={
         ContentType:'application/json;charset=UTF-8'
     }
@@ -31,11 +30,12 @@ class AxiosAbstract{
                 headers, 
                 method, url,  params,data,responseType
             }).then((res)=>{
+                console.log(res)
                 if(res.status===200){
-                    if (res.data.success) {
-                        resolve({ status: true, message: 'success', data: res.data?.data, origin: res.data });
+                    if (res.data.code===200) {
+                        resolve({ status: true, message: res.data.msg, data: res.data.data, origin: res.data });
                     } else {
-                        resolve({ status: false, message: res.data?.errorMessage || (url + '请求失败'), data: res.data?.data, origin: res.data });
+                        resolve({ status: false, message: res.data?.msg || (url + '请求失败'), data: res.data?.data, origin: res.data });
                     }
                 }
             }).catch((error)=>{

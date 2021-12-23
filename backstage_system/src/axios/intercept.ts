@@ -26,9 +26,9 @@ const removePending = (config:AxiosRequestConfig)=>{
     for(const key in pending){
         const item:number= +key;
         const list:PendingType= pending[key]
-        if(list.url == config.url && list.method== config.method
-        &&JSON.stringify(list.params)== JSON.stringify(config.params)
-        &&JSON.stringify(list.data) == JSON.stringify(config.data)){
+        if(list.url === config.url && list.method=== config.method
+        &&JSON.stringify(list.params)=== JSON.stringify(config.params)
+        &&JSON.stringify(list.data) === JSON.stringify(config.data)){
             // list.cancel('操作太频繁，请稍后再试')
             pending.splice(item,1)
         }
@@ -86,7 +86,7 @@ instance.interceptors.response.use(
         }
         //超时重新请求
         const config =error.config;
-        const [RETRY_COUNT,RETRY_DELAY] =[3,1000]
+        const [RETRY_COUNT,RETRY_DELAY] =[1,1000]
         if(config && RETRY_COUNT){
             config.__retryCount = config.__retryCount || 0;
             if(config.__retryCount>RETRY_COUNT){
